@@ -8,7 +8,7 @@ Caso considere que esteja faltando alguma informação para a execução do exam
 
 A aplicação a ser desenvolvida consiste em uma lista de tarefas que suporte múltiplos usuários.
 
-Implemente o cadastro de usuários e taregas no banco de dados (SQLite). O formato JSON deve ser utilizado para serialização dos dados.
+Implemente o cadastro de usuários e tarefas no banco de dados (SQLite). O formato JSON deve ser utilizado para serialização dos dados.
 
 Devem ser implementados **testes funcionais** para todas as rotas descritas.
 

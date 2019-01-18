@@ -1,0 +1,5 @@
+virtualenv==16.0.0
+flake8==3.6.8
+Django==2.1.5
+djangorestframework==3.9.1
+django-filter==2.0.0

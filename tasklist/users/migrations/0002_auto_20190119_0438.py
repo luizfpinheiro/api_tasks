@@ -14,16 +14,29 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='user',
             name='age',
-            field=models.IntegerField(validators=[django.core.validators.MinValueValidator(18)]),
+            field=models.IntegerField(
+                validators=[django.core.validators.MinValueValidator(18)]
+            ),
         ),
         migrations.AlterField(
             model_name='user',
             name='email',
-            field=models.CharField(max_length=30, validators=[django.core.validators.EmailValidator]),
+            field=models.CharField(
+                max_length=30,
+                validators=[django.core.validators.EmailValidator]
+            ),
         ),
         migrations.AlterField(
             model_name='user',
             name='user_type',
-            field=models.CharField(choices=[('admin', 'admin'), ('manager', 'manager'), ('default', 'default')], default='default', max_length=7),
+            field=models.CharField(
+                choices=[
+                    ('admin', 'admin'),
+                    ('manager', 'manager'),
+                    ('default', 'default')
+                ],
+                default='default',
+                max_length=7
+            ),
         ),
     ]

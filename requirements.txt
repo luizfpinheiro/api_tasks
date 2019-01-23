@@ -3,3 +3,6 @@ flake8==3.6.0
 Django==2.1.5
 djangorestframework==3.9.1
 django-filter==2.0.0
+pytest==4.1.1
+requests==2.21.0
+ipdb==0.11

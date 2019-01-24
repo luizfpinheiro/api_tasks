@@ -10,20 +10,34 @@ data_task = {
                 'user_id': '1',
             }
 
-
-def test_create_task__returning_201():
-    data_user = {
+data_user = {
         'name': 'Usuario teste',
         'email': 'teste@teste.com',
         'age': '21',
         'user_type': 'admin'
     }
 
+
+def test_create_task_returning_201():
+
     post(users_url, json=data_user)
 
     request = post(tasks_url, json=data_task)
 
     assert request.status_code == status.HTTP_201_CREATED
+
+
+def test_create_task_with_length_description_higher_50_returning_201():
+    data = {
+            'descricao': 'Descrição maior que 50 caracteres maior que 50 cara',
+            'user_id': '1'
+           }
+
+    post(users_url, json=data_user)
+
+    request = post(tasks_url, json=data)
+
+    assert request.status_code == status.HTTP_400_BAD_REQUEST
 
 
 def test_get_tasks_returning_200():

@@ -52,7 +52,7 @@ def test_create_user_default_returning_201():
     request = post(users_url, json=data)
 
     assert request.status_code == status.HTTP_201_CREATED
-    
+
 
 def test_create_user_with_wrong_type_returning_400():
 
@@ -64,7 +64,7 @@ def test_create_user_with_wrong_type_returning_400():
             }
 
     request = post(users_url, json=data)
-    
+
     assert request.status_code == status.HTTP_400_BAD_REQUEST
 
 
@@ -78,21 +78,35 @@ def test_create_user_with_age_smaller_18_returning_400():
             }
 
     request = post(users_url, json=data)
-    
+
     assert request.status_code == status.HTTP_400_BAD_REQUEST
 
 
 def test_create_user_with_lenght_name_higher_50_returning_400():
 
     data = {
-                'name': 'Nome maior que 50 caracteres Nome maior que 50 caracteres',
-                'email': 'teste@teste.com',
+            'name': 'Nome maior que 50 caracteres Nome maior que 50 caracte',
+            'email': 'teste@teste.com',
+            'age': '20',
+            'user_type': 'admin'
+            }
+
+    request = post(users_url, json=data)
+
+    assert request.status_code == status.HTTP_400_BAD_REQUEST
+
+
+def test_create_user_with_wrong_email_returning_400():
+
+    data = {
+                'name': 'Usuario com email errado',
+                'email': 'teste',
                 'age': '20',
                 'user_type': 'admin'
             }
 
     request = post(users_url, json=data)
-    
+
     assert request.status_code == status.HTTP_400_BAD_REQUEST
 
 
@@ -101,6 +115,7 @@ def test_get_users_url_returning_200():
     request = get(users_url)
 
     assert request.status_code == status.HTTP_200_OK
+
 
 def test_get_user_detail_url_returning_200():
 

@@ -5,12 +5,6 @@ from rest_framework import status
 
 users_url = 'http://127.0.0.1:8000/users/'
 tasks_url = 'http://127.0.0.1:8000/tasks/'
-data = {
-        'name': 'Usuario teste',
-        'email': 'teste@teste.com',
-        'age': '21',
-        'user_type': 'admin'
-    }
 
 data_user = {
                 'name': 'Usuario teste',
@@ -25,11 +19,81 @@ data_task = {
             }
 
 
-def test_create_user__returning_201():
+def test_create_user_returning_201():
 
     request = post(users_url, json=data_user)
 
     assert request.status_code == status.HTTP_201_CREATED
+
+
+def test_create_user_manager_returning_201():
+
+    data = {
+                'name': 'Usuario teste',
+                'email': 'teste@teste.com',
+                'age': '21',
+                'user_type': 'manager'
+            }
+
+    request = post(users_url, json=data)
+
+    assert request.status_code == status.HTTP_201_CREATED
+
+
+def test_create_user_default_returning_201():
+
+    data = {
+                'name': 'Usuario teste',
+                'email': 'teste@teste.com',
+                'age': '21',
+                'user_type': 'default'
+            }
+
+    request = post(users_url, json=data)
+
+    assert request.status_code == status.HTTP_201_CREATED
+    
+
+def test_create_user_with_wrong_type_returning_400():
+
+    data = {
+                'name': 'Usuario do tipo errado',
+                'email': 'teste@teste.com',
+                'age': '21',
+                'user_type': 'superuser'
+            }
+
+    request = post(users_url, json=data)
+    
+    assert request.status_code == status.HTTP_400_BAD_REQUEST
+
+
+def test_create_user_with_age_smaller_18_returning_400():
+
+    data = {
+                'name': 'Usuario com 15 anos',
+                'email': 'teste@teste.com',
+                'age': '15',
+                'user_type': 'admin'
+            }
+
+    request = post(users_url, json=data)
+    
+    assert request.status_code == status.HTTP_400_BAD_REQUEST
+
+
+def test_create_user_with_lenght_name_higher_50_returning_400():
+
+    data = {
+                'name': 'Nome maior que 50 caracteres Nome maior que 50 caracteres',
+                'email': 'teste@teste.com',
+                'age': '20',
+                'user_type': 'admin'
+            }
+
+    request = post(users_url, json=data)
+    
+    assert request.status_code == status.HTTP_400_BAD_REQUEST
 
 
 def test_get_users_url_returning_200():

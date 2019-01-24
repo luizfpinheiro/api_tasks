@@ -2,7 +2,7 @@ import json
 from requests import get, post, put, delete
 from rest_framework import status
 
-
+users_url = 'http://127.0.0.1:8000/users/'
 tasks_url = 'http://127.0.0.1:8000/tasks/'
 
 data_task = {
@@ -12,6 +12,14 @@ data_task = {
 
 
 def test_create_task__returning_201():
+    data_user = {
+        'name': 'Usuario teste',
+        'email': 'teste@teste.com',
+        'age': '21',
+        'user_type': 'admin'
+    }
+
+    post(users_url, json=data_user)
 
     request = post(tasks_url, json=data_task)
 

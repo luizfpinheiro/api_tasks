@@ -41,7 +41,14 @@ $ ./manage.py migrate
 $ ./manage.py runserver
 ```
 
-### 6. Com o ambiente virtual ativado, execute os testes
+### 6. Em outra aba do terminal, volte para a pasta raiz do projeto e ative o ambiente virtual novamente
+```
+$ cd ..
+$ source /venv/bin/activate
+
+```
+
+### 6. Execute os testes
 ```
 $ pytest
 ```
